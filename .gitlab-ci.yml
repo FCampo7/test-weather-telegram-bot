@@ -7,5 +7,5 @@ heroku:
         - touch readme
         - git add .
         - git commit -m "Init"
-        - git push -f heroku main
+        - git push -f heroku HEAD:main
         - heroku ps:scale clock=1
