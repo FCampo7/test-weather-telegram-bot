@@ -2,4 +2,3 @@ heroku:
     stage: deploy
     script:
         - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/telegram-bot-clima-test.git
-        - heroku ps:scale clock=1
