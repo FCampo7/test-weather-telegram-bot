@@ -1,4 +1,4 @@
 heroku:
     stage: deploy
     script:
-        - git push heroku main
+        - dpl --provider=heroku --app=telegram-bot-clima-test --api-key=$HEROKU_API_KEY
