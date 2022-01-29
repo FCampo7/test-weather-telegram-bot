@@ -1,4 +1,13 @@
+image: node:latest
+
+before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+
 heroku:
-    stage: deploy
+    type: deploy
+    stage: production
+    image: ruby:latest
     script:
         - dpl --provider=heroku --app=telegram-bot-clima-test --api-key=$HEROKU_API_KEY
