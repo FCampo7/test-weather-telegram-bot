@@ -9,10 +9,10 @@ sched = BlockingScheduler()
 load_dotenv(find_dotenv())
 
 def telegramAPI(method, data):
-	return requests.post('https://api.telegram.org/bot'+str(os.getenv('TOKEN_TELEGRAM'))+'/'+method, data = data)
+	return requests.post('https://api.telegram.org/bot'+os.getenv('TOKEN_TELEGRAM')+'/'+method, data = data)
 
 def witRequest(texto):
-	header = {'Authorization': str(os.getenv('TOKEN_WIT'))}
+	header = {'Authorization': os.getenv('TOKEN_WIT')}
 	url_wit = 'https://api.wit.ai/message?v=20220128&q=' + requests.utils.requote_uri(texto)
 	return requests.get(url_wit, headers=header)
 
