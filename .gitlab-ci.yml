@@ -3,5 +3,5 @@ heroku:
     script:
         - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/telegram-bot-clima-test.git
         - git remote -v
-        - git push heroku main:master
+        - git push heroku HEAD
         - heroku ps:scale clock=1
