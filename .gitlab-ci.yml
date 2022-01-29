@@ -5,7 +5,7 @@ before_script:
     - apt-get install -y ruby-dev
     - gem install dpl
 
-heroku:
+production:
     type: deploy
     stage: production
     image: ruby:latest
