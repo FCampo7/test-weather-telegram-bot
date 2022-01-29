@@ -1,9 +1,7 @@
 heroku:
     stage: deploy
-    only: 
-        - main
     script:
         - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/telegram-bot-clima-test.git
         - git remote -v
-        - git push heroku origin:main
+        - git push heroku main:master
         - heroku ps:scale clock=1
