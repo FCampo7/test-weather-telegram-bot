@@ -4,5 +4,6 @@ heroku:
         - git config user.email "fcampo7@hotmail.com"
         - git config user.name "Francisco Luis Campo"
         - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/telegram-bot-clima-test.git
+        - git show-ref
         - git push heroku main
         - heroku ps:scale clock=1
