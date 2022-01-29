@@ -7,7 +7,7 @@ before_script:
 
 production:
     type: deploy
-    stage: production
+    stage: deploy
     image: ruby:latest
     script:
         - dpl --provider=heroku --app=telegram-bot-clima-test --api-key=$HEROKU_API_KEY
