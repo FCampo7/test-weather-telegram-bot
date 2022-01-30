@@ -1,9 +1,7 @@
-import requests  
 import os
+import requests
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request
-
-# BOT_URL = f'https://api.telegram.org/bot{os.environ["TOKEN_TELEGRAM"]}/'  # <-- add your telegram token as environment variable
 
 
 load_dotenv(find_dotenv())
@@ -17,31 +15,21 @@ def witRequest(texto):
 	return requests.get(url_wit, headers=header)
 
 def get_weather(location):
-	return ("The temperature in "+str(location)+" is 16 degrees")
+	response = get_open_weather(location).json()
+	return (f'The weather in {location}:\nWeather: {response["weather"]["main"]}\nTemperature: {response["main"]["temp"]} Celsius')
 
 def set_weather(location, temp):
-	return "Temperature of "+str(location)+" set to "+str(temp['valor'])+" "+str(temp['unidad'])
+	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
 
+def get_open_weather(location):
+	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={os.getenv("TOKEN_OPENWEATHER")}'
+	return requests.get(url_ow)
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['POST'])
-def main():  
-	# data = request.json
-
-	# print(data)  # Comment to hide what Telegram is sending you
-	# chat_id = data['message']['chat']['id']
-	# message = data['message']['text']
-
-	# json_data = {
-	# 	"chat_id": chat_id,
-	# 	"text": message,
-	# }
-
-	# message_url = BOT_URL + 'sendMessage'
-	# requests.post(message_url, json=json_data)
-
+def main():
 
 	telegramBot_r = request.json
 
@@ -84,8 +72,6 @@ def main():
 		print(e)
 		res = telegramAPI('sendMessage', dict(chat_id = chat_id, text = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'))
 		print(res.content)
-
-
 
 	return ''
 
