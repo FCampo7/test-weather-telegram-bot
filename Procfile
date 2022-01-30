@@ -1,1 +1,1 @@
-clock: python telegramBot.py
+web: python Bot.py
