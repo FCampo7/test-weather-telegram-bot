@@ -47,15 +47,14 @@ def main():
 
 	print(telegramBot_r)
 
-	r = telegramBot_r['content']['result']
 	wit_intent = []
 	wit_temp = []
 	wit_entities = dict()
 	wit_location = []
-	chat_id = r['message']['chat']['id']
+	chat_id = telegramBot_r['message']['chat']['id']
 	
 	try:
-		message = r['message']['text']
+		message = telegramBot_r['message']['text']
 		wit_r = witRequest(str(message)).json()
 
 		print(wit_r)
