@@ -39,9 +39,9 @@ def main():
 	wit_temp = []
 	wit_entities = dict()
 	wit_location = []
-	chat_id = telegramBot_r['message']['chat']['id']
 	
 	try:
+		chat_id = telegramBot_r['message']['chat']['id']
 		message = telegramBot_r['message']['text']
 		wit_r = witRequest(str(message)).json()
 
