@@ -70,6 +70,8 @@ def main():
 			print(r2.content)
 	except Exception as e:
 		print(e)
+		if('edited_message' in telegramBot_r):
+			chat_id=telegramBot_r['edited_message']['chat']['id']
 		res = telegramAPI('sendMessage', dict(chat_id = chat_id, text = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'))
 		print(res.content)
 
