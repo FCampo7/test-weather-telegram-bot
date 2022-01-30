@@ -45,6 +45,8 @@ def main():
 
 	telegramBot_r = request.json
 
+	print(telegramBot_r)
+
 	r = telegramBot_r['content']['result']
 	wit_intent = []
 	wit_temp = []
