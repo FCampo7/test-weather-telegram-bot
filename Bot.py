@@ -45,45 +45,44 @@ def main():
 
 	telegramBot_r = request.json
 
-	if(telegramBot_r.status_code==200):
-		r = telegramBot_r['content']['result']
-		wit_intent = []
-		wit_temp = []
-		wit_entities = dict()
-		wit_location = []
-		chat_id = r['message']['chat']['id']
-		
+	r = telegramBot_r['content']['result']
+	wit_intent = []
+	wit_temp = []
+	wit_entities = dict()
+	wit_location = []
+	chat_id = r['message']['chat']['id']
+	
+	try:
+		message = r['message']['text']
+		wit_r = witRequest(str(message)).json()
+
+		print(wit_r)
+
+		for i in wit_r['intents']:
+			wit_intent.append(i['name'])
+
+		wit_entities = wit_r['entities']
+
 		try:
-			message = r['message']['text']
-			wit_r = witRequest(str(message)).json()
-
-			print(wit_r)
-
-			for i in wit_r['intents']:
-				wit_intent.append(i['name'])
-
-			wit_entities = wit_r['entities']
-
-			try:
-				if 'wit$location:location' in wit_entities:
-					for i in wit_entities['wit$location:location']:
-						wit_location.append(i['body'])
-				if 'wit$temperature:temperature' in wit_entities:
-					for t in wit_entities['wit$temperature:temperature']:
-						wit_temp.append(dict(valor = t['value'], unidad = t['unit']))
-			except Exception as e:
-				print(e)
-
-			if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-				r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = get_weather(wit_location[0])))
-				print(r1.content)
-			elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
-				r2 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = set_weather(wit_location[0], wit_temp[0])))
-				print(r2.content)
+			if 'wit$location:location' in wit_entities:
+				for i in wit_entities['wit$location:location']:
+					wit_location.append(i['body'])
+			if 'wit$temperature:temperature' in wit_entities:
+				for t in wit_entities['wit$temperature:temperature']:
+					wit_temp.append(dict(valor = t['value'], unidad = t['unit']))
 		except Exception as e:
 			print(e)
-			res = telegramAPI('sendMessage', dict(chat_id = chat_id, text = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'))
-			print(res.content)
+
+		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
+			r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = get_weather(wit_location[0])))
+			print(r1.content)
+		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
+			r2 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = set_weather(wit_location[0], wit_temp[0])))
+			print(r2.content)
+	except Exception as e:
+		print(e)
+		res = telegramAPI('sendMessage', dict(chat_id = chat_id, text = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'))
+		print(res.content)
 
 
 
