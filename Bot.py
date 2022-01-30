@@ -16,8 +16,7 @@ def witRequest(texto):
 
 def get_weather(location):
 	response = get_open_weather(location).json()
-	print(response)
-	return (f'The weather in {location}:\nWeather: {response["weather"]["main"]}\nTemperature: {response["main"]["temp"]} Celsius')
+	return (f'The weather in {location}:\nWeather: {response["weather"][0]["main"]}\nTemperature: {response["main"]["temp"]} Celsius')
 
 def set_weather(location, temp):
 	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
