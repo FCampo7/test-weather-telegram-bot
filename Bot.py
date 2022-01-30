@@ -22,7 +22,7 @@ def get_weather(location, unit='metric'):
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	return f'The weather in {location}:\nWeather: {response["weather"][0]["main"]} {icon}\nTemperature: {response["main"]["temp"]} {unidad_d[unit]}'
+	return f'*The weather in {location}:*\n__Weather:__ {response["weather"][0]["main"]} {icon}\n__Temperature:__ {response["main"]["temp"]} {unidad_d[unit]}'
 
 def set_weather(location, temp):
 	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
@@ -78,7 +78,7 @@ def main():
 			print(e)
 
 		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-			r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = get_weather(wit_location[0], unidad)))
+			r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = get_weather(wit_location[0], unidad), parse_mode='MarkdownV2'))
 			print(r1.content)
 		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
 			r2 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = set_weather(wit_location[0], wit_temp[0])))
