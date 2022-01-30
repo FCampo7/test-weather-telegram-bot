@@ -22,7 +22,9 @@ def get_weather(location, unit='metric'):
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	return f'*The weather in {location}:*\n__Weather:__ {response["weather"][0]["main"]} {icon}\n__Temperature:__ {response["main"]["temp"]} {unidad_d[unit]}'
+	return f'*The weather in {location}:*  \
+		__Weather:__ {response["weather"][0]["main"]} {icon}  \
+		__Temperature:__ {response["main"]["temp"]} {unidad_d[unit]}'
 
 def set_weather(location, temp):
 	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
