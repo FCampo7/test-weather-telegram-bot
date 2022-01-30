@@ -16,7 +16,7 @@ def witRequest(texto):
 
 def get_weather(location, unit='metric'):
 	unidad_d = dict(metric='Celsius', imperial='Fahrenheit', standard='Kelvin')
-	icons_d = dict([(2, '\U000026C8'), (3, '\U0001F326'), (5, '\U0001F327'), (6, '\U0001F328'), (7, '\U0001F32B'), (800, '\U00002609'), (8, '\U00002601')])
+	icons_d = dict([(2, ':thunder_cloud_rain:'), (3, ':white_sun_rain_cloud:'), (5, ':cloud_rain:'), (6, ':cloud_snow:'), (7, ':fog:'), (800, ':sunny:'), (8, ':cloud:')])
 	response = get_open_weather(location, unit).json()
 	if response["weather"][0]["id"] == 800:
 		icon = icons_d[800]
