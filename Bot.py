@@ -16,14 +16,14 @@ def witRequest(texto):
 
 def get_weather(location, unit='metric'):
 	unidad_d = dict(metric='Celsius', imperial='Fahrenheit', standard='Kelvin')
-	icons_d = dict([(2, ':thunder_cloud_rain:'), (3, ':white_sun_rain_cloud:'), (5, ':cloud_rain:'), (6, ':cloud_snow:'), (7, ':fog:'), (800, ':sunny:'), (8, ':cloud:')])
+	icons_d = dict([(2, '⛈'), (3, '🌦'), (5, '🌧'), (6, '🌨'), (7, '🌫'), (800, '☀️'), (8, '☁️')])
 	response = get_open_weather(location, unit).json()
 	if response["weather"][0]["id"] == 800:
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	return f"*The weather in {location}:*  \
-		__Weather:__ {response['weather'][0]['main']} {icon}  \
+	return f"*The weather in {location}:*\n\
+		__Weather:__ {response['weather'][0]['main']} {icon}\n\
 		__Temperature:__ {int(response['main']['temp'])} {unidad_d[unit]}"
 
 def set_weather(location, temp):
@@ -86,8 +86,7 @@ def main():
 			message_s = set_weather(wit_location[0], wit_temp[0])
 	except Exception as e:
 		print(e)
-		message_s = "Sorry, I didn\\'t understand\\.  \
-			Please try again adding a location or temperature value\\."
+		message_s = "Sorry, I didn\\'t understand\\.\nPlease try again adding a location or temperature value\\."
 	
 	print(message_s)
 	r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
