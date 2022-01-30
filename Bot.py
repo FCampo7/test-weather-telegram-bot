@@ -22,12 +22,12 @@ def get_weather(location, unit='metric'):
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	return f'*The weather in {location}:*  \
-		__Weather:__ {response["weather"][0]["main"]} {icon}  \
-		__Temperature:__ {response["main"]["temp"]} {unidad_d[unit]}'
+	return f"*The weather in {location}:*  \
+		__Weather:__ {response['weather'][0]['main']} {icon}  \
+		__Temperature:__ {int(response['main']['temp'])} {unidad_d[unit]}"
 
 def set_weather(location, temp):
-	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
+	return f"Temperature of {location} set to {int(temp['valor'])} {temp['unidad']}"
 
 def get_open_weather(location, unit):
 	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
@@ -86,8 +86,8 @@ def main():
 			message_s = set_weather(wit_location[0], wit_temp[0])
 	except Exception as e:
 		print(e)
-		message_s = "Sorry, I didn't understand.  \
-			Please try again adding a location or temperature value."
+		message_s = "Sorry, I didn\\'t understand\\.  \
+			Please try again adding a location or temperature value\\."
 	
 	print(message_s)
 	r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
