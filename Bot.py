@@ -80,15 +80,16 @@ def main():
 			print(e)
 
 		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-			r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = get_weather(wit_location[0], unidad), parse_mode='MarkdownV2'))
-			print(r1.content)
+			message_s=get_weather(wit_location[0], unidad)
+			
 		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
-			r2 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = set_weather(wit_location[0], wit_temp[0])))
-			print(r2.content)
+			message_s=set_weather(wit_location[0], wit_temp[0])
 	except Exception as e:
 		print(e)
-		res = telegramAPI('sendMessage', dict(chat_id = chat_id, text = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'))
-		print(res.content)
+		message_s = 'Sorry, I didn\'t understand.\nPlease try again adding a location or temperature value.'
+	
+	r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
+	print(r1.content)
 
 	return ''
 
