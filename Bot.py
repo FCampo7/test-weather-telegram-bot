@@ -1,42 +1,13 @@
 import os
-import requests
-from dotenv import load_dotenv, find_dotenv
+import apiCalls
 from flask import Flask, request
 
-
-load_dotenv(find_dotenv())
-
-def telegramAPI(method, data):
-	return requests.post(f'https://api.telegram.org/bot{os.getenv("TOKEN_TELEGRAM")}/'+method, data = data)
-
-def witRequest(texto):
-	header = {'Authorization': os.getenv('TOKEN_WIT')}
-	url_wit = 'https://api.wit.ai/message?v=20220128&q=' + requests.utils.requote_uri(texto)
-	return requests.get(url_wit, headers=header)
-
-def get_weather(location, unit='metric'):
-	unidad_d = dict(metric='Celsius', imperial='Fahrenheit', standard='Kelvin')
-	icons_d = dict([(2, '⛈'), (3, '🌦'), (5, '🌧'), (6, '🌨'), (7, '🌫'), (800, '☀️'), (8, '☁️')])
-	response = get_open_weather(location, unit).json()
-	if response["weather"][0]["id"] == 800:
-		icon = icons_d[800]
-	else:
-		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	return f"*The weather in {str(location).capitalize()}: {response['weather'][0]['main']} {icon} {int(response['main']['temp'])} {unidad_d[unit]}*"
-
-def set_weather(location, temp):
-	return f"Temperature of {location} set to {int(temp['valor'])} {temp['unidad']}"
-
-def get_open_weather(location, unit):
-	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
-	return requests.get(url_ow)
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['POST'])
 def main():
-
 	unidades_d = dict(k='standard', c='metric', f='imperial') 
 	telegramBot_r = request.json
 
@@ -56,7 +27,7 @@ def main():
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
 
-		wit_r = witRequest(str(message)).json()
+		wit_r = apiCalls.witRequest(str(message)).json()
 
 		print(wit_r)
 
@@ -78,16 +49,16 @@ def main():
 			print(e)
 
 		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-			message_s = get_weather(wit_location[0], unidad)
+			message_s = apiCalls.get_weather(wit_location[0], unidad)
 			
 		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
-			message_s = set_weather(wit_location[0], wit_temp[0])
+			message_s = apiCalls.set_weather(wit_location[0], wit_temp[0])
 	except Exception as e:
 		print(e)
 		message_s = f"Sorry, I didn\\'t understand\\.\nPlease try again adding a location or temperature value\\."
 	
 	print(message_s)
-	r1 = telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
+	r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
 	print(r1.content)
 
 	return ''
