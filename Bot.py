@@ -16,8 +16,13 @@ def witRequest(texto):
 
 def get_weather(location, unit='metric'):
 	unidad_d = dict(metric='Celsius', imperial='Fahrenheit', standard='Kelvin')
+	icons_d = dict([(2, '\u26C8'), (3, '\u1F326'), (5, '\u1F327'), (6, '\u1F328'), (7, '\u1F32B'), (800, '\u2609'), (8, '\u2601')])
 	response = get_open_weather(location, unit).json()
-	return f'The weather in {location}:\nWeather: {response["weather"][0]["main"]}\nTemperature: {response["main"]["temp"]} {unidad_d[unit]}'
+	if response.weather[0].id == 800:
+		icon = icons_d[800]
+	else:
+		icon = icons_d[int(response.weather[0].id/100)]
+	return f'The weather in {location}:\nWeather: {response["weather"][0]["main"]} {icon}\nTemperature: {response["main"]["temp"]} {unidad_d[unit]}'
 
 def set_weather(location, temp):
 	return f"Temperature of {location} set to {temp['valor']} {temp['unidad']}"
