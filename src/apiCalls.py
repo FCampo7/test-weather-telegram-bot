@@ -22,10 +22,10 @@ def witRequest(texto):
 	"""Call the [Wit.ai](https://wit.ai/) API to process the message received by the bot
 
 	Args:
-		texto {String} -- String with the message to be processed
+		texto (str): String with the message to be processed
 
 	Returns:
-		Response -- HTTP Response with the processed information
+		Response: HTTP Response with the processed information
 	"""
 	header = {'Authorization': os.getenv('TOKEN_WIT')}
 	url_wit = 'https://api.wit.ai/message?v=20220128&q=' + requests.utils.requote_uri(texto)
@@ -69,7 +69,5 @@ def get_weather(location, unit='metric'):
 	return f"*The weather in {str(location).capitalize()}: {icon} {response['weather'][0]['main']} & {int(response['main']['temp'])} {unidad_d[unit]}*"
 
 def set_weather(location, temp):
-	"""
-		### This function was only to try if the Wit.ai API was recognizig the intent well
-	"""
+	"""This function was only to try if the Wit.ai API was recognizig the intent well"""
 	return f"Temperature of {str(location).capitalize()} set to {int(temp['valor'])} {temp['unidad']}"
