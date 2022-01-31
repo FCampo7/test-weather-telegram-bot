@@ -39,7 +39,9 @@ Under development.
 
 ## Notes
 
-telegramBot.py was the bot first implementation, make use of schedules but didn't convince me, so decide to change it for a webhook.
+The folder "old" contains old files that are unnecessary, the only reason cause I keep it it's to use it as a guide for future projects. Can be deleted with no problem.
+
+old/telegramBot.py was the bot first implementation, make use of schedules but didn't convince me, so decide to change it for a webhook.
 
 ---
 # Español
@@ -62,4 +64,6 @@ Bajo desarrollo.
 
 ## Notas
 
-telegramBot.py fue la primera implementación del bot, hacía uso de schedules pero no me convenció, así que decidí cambiarlo por un webhook.
+La carpeta "old" contiene archivos antiguos que no son necesarios, la única razón por la que la guardo es para usarla como guía para futuros proyectos. Se puede borrar sin problema.
+
+old/telegramBot.py fue la primera implementación del bot, hacía uso de schedules pero no me convenció, así que decidí cambiarlo por un webhook.
