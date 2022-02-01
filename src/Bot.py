@@ -27,7 +27,7 @@ def main():
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
 		
-		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': '{{chat_id}}', 'action': 'typing'})
+		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': str(chat_id), 'action': 'typing'})
 
 		print(action_r.json)
 
