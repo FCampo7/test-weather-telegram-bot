@@ -26,6 +26,10 @@ def main():
 		else:
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
+		
+		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': '{{chat_id}}', 'action': 'typing'})
+
+		print(action_r)
 
 		wit_r = apiCalls.witRequest(str(message)).json()
 
