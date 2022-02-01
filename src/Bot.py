@@ -29,7 +29,7 @@ def main():
 		
 		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': '{{chat_id}}', 'action': 'typing'})
 
-		print(action_r)
+		print(action_r.json)
 
 		wit_r = apiCalls.witRequest(str(message)).json()
 
