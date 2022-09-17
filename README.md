@@ -28,7 +28,7 @@ Telegram bot that implements the [Wit.ai API](https://wit.ai/) to process the me
 
 The webhook implementation is a fork from [RNogales94's project](https://github.com/RNogales94/Telegram-Bot-Heroku-Webhook-For-Medium-).
 
-The bot is hosted on [Heroku](https://dashboard.heroku.com/) servers with a free plan.
+The bot is hosted on [pythonanywhere](https://www.pythonanywhere.com/) servers with a free plan.
 
 ## License
 
@@ -54,7 +54,7 @@ Bot de Telegram que implementa la [API Wit.ai](https://wit.ai/) para procesar el
 
 La implementación del webhook es una bifurcación del [proyecto de RNogales94](https://github.com/RNogales94/Telegram-Bot-Heroku-Webhook-For-Medium-).
 
-El bot está hosteado en los servers de [Heroku](https://dashboard.heroku.com/) con un plan gratuito.
+El bot está hosteado en los servers de [pythonanywhere](https://www.pythonanywhere.com/) con un plan gratuito.
 
 ## Licencia
 

@@ -12,9 +12,9 @@ def main():
 	wit_temp = []
 	wit_entities = dict()
 	wit_location = []
-	unidades_d = dict(k='standard', c='metric', f='imperial') 
+	unidades_d = dict(k='standard', c='metric', f='imperial')
 	unidad = unidades_d['c']
-	
+
 	try:
 		telegramBot_r = request.json
 
@@ -26,7 +26,7 @@ def main():
 		else:
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
-		
+
 		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': str(chat_id), 'action': 'typing'})
 
 		print(action_r.json)
@@ -60,7 +60,7 @@ def main():
 	except Exception as e:
 		print(e)
 		message_s = f"Sorry, I didn\'t understand\\. Please try expressing it in another way, something like \"What\'s the weather in Buenos Aires, Argentina?\"\\. Thanks\\!"
-	
+
 	print(message_s)
 	r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
 	print(r1.content)
@@ -68,5 +68,5 @@ def main():
 	return ''
 
 
-if __name__ == '__main__':  
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
+if __name__ == '__main__':
+    app.run()

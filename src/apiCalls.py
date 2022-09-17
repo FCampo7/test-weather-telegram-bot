@@ -27,7 +27,7 @@ def witRequest(texto):
 	Returns:
 		Response: HTTP Response with the processed information
 	"""
-	header = {'Authorization': os.getenv('TOKEN_WIT')}
+	header = {'Authorization': 'Bearer '+os.getenv('TOKEN_WIT')}
 	url_wit = 'https://api.wit.ai/message?v=20220128&q=' + requests.utils.requote_uri(texto)
 	
 	return requests.get(url_wit, headers=header)
