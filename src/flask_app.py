@@ -2,6 +2,7 @@ import os
 import apiCalls
 from flask import Flask, request, render_template
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,7 +17,6 @@ def main():
 	wit_location = []
 	unidades_d = dict(k='standard', c='metric', f='imperial')
 	unidad = unidades_d['c']
-	chat_id = 0
 
 	try:
 		telegramBot_r = request.json
@@ -25,15 +25,8 @@ def main():
 
 		if('message' in telegramBot_r):
 			chat_id = telegramBot_r['message']['chat']['id']
-			if('location' in telegramBot_r['message']):
-				location = telegramBot_r['message']['location']
-				message_s= apiCalls.get_weather(f"lat\={location['latitude']}&lon\={location['longitude']}", unidad)
-				r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
-				print(r1.content)
-				return ''
-
 			message = telegramBot_r['message']['text']
-		elif ('edited_message' in telegramBot_r):
+		else:
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
 
@@ -62,7 +55,7 @@ def main():
 			unidad = unidades_d[str(wit_entities['units:units'][0]['value']).lower()[0]]
 
 		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-			message_s = apiCalls.get_weather("q\="+wit_location[0], unidad)
+			message_s = apiCalls.get_weather(wit_location[0], unidad)
 
 		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
 			message_s = apiCalls.set_weather(wit_location[0], wit_temp[0])
