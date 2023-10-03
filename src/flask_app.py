@@ -26,7 +26,7 @@ def main():
 			chat_id = telegramBot_r['message']['chat']['id']
 			if('location' in telegramBot_r['message']):
 				location = telegramBot_r['message']['location']
-				message_s= apiCalls.get_weather(f"lat={location['latitude']}&lon={location['longitude']}", unidad)
+				message_s= apiCalls.get_weather(f"lat\={location['latitude']}&lon\={location['longitude']}", unidad)
 				r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
 				print(r1.content)
 				return ''
@@ -61,7 +61,7 @@ def main():
 			unidad = unidades_d[str(wit_entities['units:units'][0]['value']).lower()[0]]
 
 		if(wit_intent[0] in ['temperature_get', 'wit$get_temperature']):
-			message_s = apiCalls.get_weather("q="+wit_location[0], unidad)
+			message_s = apiCalls.get_weather("q\="+wit_location[0], unidad)
 
 		elif(wit_intent[0] in ['temperature_set', 'wit$set_temperature']):
 			message_s = apiCalls.set_weather(wit_location[0], wit_temp[0])
