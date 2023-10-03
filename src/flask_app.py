@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('src/base.html')
+	return render_template('src/index.html')
 
 @app.route('/bot', methods=['POST'])
 def main():
