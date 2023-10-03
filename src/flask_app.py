@@ -24,6 +24,13 @@ def main():
 
 		if('message' in telegramBot_r):
 			chat_id = telegramBot_r['message']['chat']['id']
+			if('location' in telegramBot_r['message']):
+				location = telegramBot_r['message']['location']
+				message_s= apiCalls.get_weather(f"{location['latitude']},{location['longitude']}", unidad)
+				r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
+				print(r1.content)
+				return ''
+
 			message = telegramBot_r['message']['text']
 		elif ('edited_message' in telegramBot_r):
 			chat_id = telegramBot_r['edited_message']['chat']['id']
@@ -62,10 +69,6 @@ def main():
 	except Exception as e:
 		print(e)
 		message_s = f"Sorry, I didn\'t understand\\. Please try expressing it in another way, something like \"What\'s the weather in Buenos Aires, Argentina?\"\\. Thanks\\!"
-		if('location' in telegramBot_r['message']):
-			chat_id = telegramBot_r['message']['chat']['id']
-			location = telegramBot_r['message']['location']
-			message_s= apiCalls.get_weather(f"{location['latitude']},{location['longitude']}", unidad)
 
 	print(message_s)
 	r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
