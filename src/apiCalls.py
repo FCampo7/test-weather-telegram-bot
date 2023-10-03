@@ -42,7 +42,7 @@ def __get_open_weather(location, unit):
 	Returns:
 		Response: HTTP Response with the weather information
 	"""
-	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
+	url_ow = f'https://api.openweathermap.org/data/2.5/weather?{location}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
 	
 	return requests.get(url_ow)
 
