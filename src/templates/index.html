@@ -1,37 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weather telegram bot</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-<body>
-	<nav class="navbar">
-		<div class="container">
-		  <div id="navMenu" class="navbar-menu">
-			<div class="navbar-end">
-				<div class="navbar-item">
-					<div class="buttons">
-						<a class="button is-dark" href="https://github.com/FCampo7/test-weather-telegram-bot">Github</a>
-					</div>
-				</div>
-			</div>
-		  </div>
-		</div>
-	</nav>
 
-	<section class="hero is-info is-medium is-fullheight-with-navbar">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather telegram bot</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<script src="https://kit.fontawesome.com/9e771a2ce4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<section class="hero is-fullheight">
 		<div class="hero-body">
-		  <div class="container has-text-centered">
-			<p class="title">
-				Wheater BOT
-			</p>
-			<p class="subtitle">
-				<a href="https://t.me/PTestWearherBot">@PTestWearherBot</a>
-			</p>
-		  </div>
+			<div class="container has-text-centered">
+				<p class="title is-2">
+					Wheater Telegram BOT
+				</p>
+				<p class="subtitle is-4">
+					<a class="icon-text" href="https://t.me/PTestWearherBot">
+						<span class="icon">
+							<i class="fa-brands fa-telegram"></i>
+						</span>
+						<span>
+							@PTestWearherBot
+						</span>
+					</a>
+				</p>
+				<section class="section has-text-justified">
+					<article class="container">
+						<div class="message-body">
+							Bot de <a
+							style="text-decoration: none !important;"
+							href="https://telegram.org/"><strong>Telegram</strong></a> que permite consultar el clima de una ciudad utilizando reconocimiento
+							de lenguaje natural, proporcionado por la API <a href="https://wit.ai"
+								style="text-decoration: none !important;"><strong>Wit.ai</strong></a>, para evitar el
+							uso de comandos.
+							Por ejemplo puede enviar el siguiente mensaje <em>"¿Cómo está el clima en Buenos
+								Aires?"</em> o <em>"¿Qué tiempo hace en
+								Buenos Aires?"</em> y el bot responderá con la información del clima en la ciudad, proporcionada por la API <a style="text-decoration: none !important;" href="https://openweathermap.org/"><strong>OpenWeatherMap</strong></a>.
+						</div>
+					</article>
+				</section>
+				<a class="icon-text button is-info is-outlined is-rounded is-medium"
+					href="https://github.com/FCampo7/test-weather-telegram-bot">
+					<span class="icon">
+						<i class="fa-brands fa-github"></i>
+					</span>
+					<span>
+						Source Code
+					</span>
+				</a>
+			</div>
 		</div>
-	  </section>
+	</section>
 </body>
+
 </html>
