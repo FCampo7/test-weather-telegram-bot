@@ -1,12 +1,15 @@
 import os
 import apiCalls
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+	return render_template('src/base.html')
 
-@app.route('/', methods=['POST'])
+@app.route('/bot', methods=['POST'])
 def main():
 	wit_intent = []
 	wit_temp = []
