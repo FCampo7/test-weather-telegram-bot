@@ -16,6 +16,7 @@ def main():
 	wit_location = []
 	unidades_d = dict(k='standard', c='metric', f='imperial')
 	unidad = unidades_d['c']
+	chat_id = 0
 
 	try:
 		telegramBot_r = request.json
