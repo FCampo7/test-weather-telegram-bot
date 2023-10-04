@@ -3,9 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Weather telegram bot</title>
+	<title>Clima Boti 🤖</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	<script src="https://kit.fontawesome.com/9e771a2ce4.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles.css">
+	</link>
 </head>
 
 <body>
@@ -13,7 +15,7 @@
 		<div class="hero-body">
 			<div class="container has-text-centered">
 				<p class="title is-2">
-					Wheater Telegram BOT
+					Clima Boti 🤖
 				</p>
 				<p class="subtitle is-4">
 					<a class="icon-text" href="https://t.me/PTestWearherBot">
@@ -25,21 +27,73 @@
 						</span>
 					</a>
 				</p>
+				<section class="section">
+					<article id="chat" class="container">
+						<div id="chat-cabecera" class="has-text-centered">
+							<div class="imagen iconos">
+								<i class="fas fa-arrow-left"></i>
+							</div>
+							<div class="chat-titulos">
+								<p class="title is-5">Clima Boti 🤖</p>
+								<p class="subtitle is-7">bot</p>
+							</div>
+							<div class="imagen iconos">
+								<i class="fas fa-user-circle fa-3x"></i>
+							</div>
+						</div>
+
+						<div id="chat-cuerpo" class="has-text-justified">
+							<div class="message-sended">
+								<p>Cual es el clima en Belgrano, Buenos Aires, Argentina?</p>
+							</div>
+							<div class="message-received">
+								<p>
+									<b>El clima en Belgrano, Buenos Aires, Argentina:</b>
+									<br>
+									<b>☁️ Clouds</b>
+									<br>
+									<b>Temperature:</b> 18ºC
+									<br>
+									<b>Feels like:</b> 17ºC
+									<br>
+									<b>Max:</b> 18ºC
+									<br>
+									<b>Min:</b> 18ºC
+								</p>
+							</div>
+						</div>
+
+						<div id="chat-text" class="field has-addons">
+							<div class="control is-expanded">
+								<input disabled class="input" type="text" placeholder="Escribe un mensaje...">
+							</div>
+							<div class="control">
+								<a disabled class="button is-info">
+									<i class="fas fa-paper-plane"></i>
+								</a>
+							</div>
+						</div>
+					</article>
+				</section>
+
 				<section class="section has-text-justified">
 					<article class="container">
 						<div class="message-body">
-							Bot de <a
-							style="text-decoration: none !important;"
-							href="https://telegram.org/"><strong>Telegram</strong></a> que permite consultar el clima de una ciudad utilizando reconocimiento
+							Bot de <a style="text-decoration: none !important;"
+								href="https://telegram.org/"><strong>Telegram</strong></a> que permite consultar el
+							clima de una ciudad utilizando reconocimiento
 							de lenguaje natural, proporcionado por la API <a href="https://wit.ai"
 								style="text-decoration: none !important;"><strong>Wit.ai</strong></a>, para evitar el
 							uso de comandos.
 							Por ejemplo puede enviar el siguiente mensaje <em>"¿Cómo está el clima en Buenos
 								Aires?"</em> o <em>"¿Qué tiempo hace en
-								Buenos Aires?"</em> y el bot responderá con la información del clima en la ciudad, proporcionada por la API <a style="text-decoration: none !important;" href="https://openweathermap.org/"><strong>OpenWeatherMap</strong></a>.
+								Buenos Aires?"</em> y el bot responderá con la información del clima en la ciudad,
+							proporcionada por la API <a style="text-decoration: none !important;"
+								href="https://openweathermap.org/"><strong>OpenWeatherMap</strong></a>.
 						</div>
 					</article>
 				</section>
+				
 				<a class="icon-text button is-info is-outlined is-rounded is-medium"
 					href="https://github.com/FCampo7/test-weather-telegram-bot">
 					<span class="icon">

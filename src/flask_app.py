@@ -62,7 +62,7 @@ def main():
 
 	except Exception as e:
 		print(e)
-		message_s = f"Sorry, I didn\'t understand\\. Please try expressing it in another way, something like \"What\'s the weather in Buenos Aires, Argentina?\"\\. Thanks\\!"
+		message_s = f"Disculpas, no entendí. Por favor intenta de nuevo probando algo como \"¿Cual es el clima en Buenos Aires, Argentina?\"\\. Gracias\\!"
 
 	print(message_s)
 	r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
