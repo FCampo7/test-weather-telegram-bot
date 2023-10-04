@@ -36,7 +36,7 @@
 
 .message-sended {
 	background: rgb(34, 118, 195);
-	background: linear-gradient(140deg, rgba(34, 118, 195, 0.9557072829131653) 0%, rgba(253, 45, 45, 1) 100%);
+	background: linear-gradient(140deg, rgba(34, 117, 195, 0.8) 0%, rgba(253, 45, 45, 0.8) 100%);
 	max-width: 70%;
 	min-width: fit-content;
 	width: fit-content;
@@ -53,7 +53,7 @@
 }
 
 .message-received {
-	background: #2d2d2d;
+	background: #2d2d2dd7;
 	max-width: 70%;
 	min-width: fit-content;
 	width: fit-content;
