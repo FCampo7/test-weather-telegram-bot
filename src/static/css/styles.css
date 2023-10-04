@@ -34,38 +34,32 @@
 	background-image: url('https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/Desktop.png');
 }
 
-.message-sended {
-	background: rgb(34, 118, 195);
-	background: linear-gradient(140deg, rgba(34, 117, 195, 0.8) 0%, rgba(253, 45, 45, 0.8) 100%);
+.chat-message {
 	max-width: 70%;
 	min-width: fit-content;
 	width: fit-content;
 	margin-top: 5%;
-	margin-right: 5%;
-	margin-left: 25%;
 	border-radius: 3%;
 	padding: 3%;
 	display: flex;
-	float: right;
 	position: relative;
 	color: white;
 	font-weight: 480;
 }
 
+.message-sended {
+	background: rgba(34, 118, 195, 0.7);
+	background: linear-gradient(140deg, rgba(34, 117, 195, 0.7) 0%, rgba(253, 45, 45, 0.7) 100%);
+	margin-right: 5%;
+	margin-left: 25%;
+	float: right;
+}
+
 .message-received {
-	background: #2d2d2dd7;
-	max-width: 70%;
-	min-width: fit-content;
-	width: fit-content;
-	margin-top: 5%;
-	margin-left: 5%;
+	background: rgba(70, 70, 70, 0.7);
 	margin-right: 25%;
-	border-radius: 3%;
-	padding: 3%;
-	display: flex;
+	margin-left: 5%;
 	float: left;
-	color: white;
-	font-weight: 480;
 }
 
 #chat-text {
