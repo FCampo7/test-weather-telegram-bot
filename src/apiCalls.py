@@ -66,12 +66,12 @@ def get_weather(location, unit='metric'):
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
 	
-	return f"## The weather in {str(location).capitalize()}: \
-### {icon} {response['weather'][0]['main']} \
-### Temperature: {int(response['main']['temp'])}°{unidad_d[unit]} \
-### Feels like: {int(response['main']['feels_like'])}°{unidad_d[unit]} \
-### Max: {int(response['main']['temp_max'])}°{unidad_d[unit]} \
-### Min: {int(response['main']['temp_min'])}°{unidad_d[unit]}"
+	return f"**The weather in {str(location).capitalize()}: ** \
+		** {icon} {response['weather'][0]['main']} ** \
+		__Temperature:__ {int(response['main']['temp'])}°{unidad_d[unit]} \
+		__Feels like:__ {int(response['main']['feels_like'])}°{unidad_d[unit]} \
+		__Max:__ {int(response['main']['temp_max'])}°{unidad_d[unit]} \
+		__Min:__ {int(response['main']['temp_min'])}°{unidad_d[unit]}"
 
 def set_weather(location, temp):
 	"""This function was only to try if the Wit.ai API was recognizig the intent well"""
