@@ -1,6 +1,7 @@
 # Test weather telegram bot
 
 ### [@PTestWeatherBot](http://t.me/PTestWearherBot)
+### [Web](https://weather-telegram-bot-webhook.onrender.com/)
 
 ## Index:
 - [Test weather telegram bot](#test-weather-telegram-bot)
@@ -28,7 +29,7 @@ Telegram bot that implements the [Wit.ai API](https://wit.ai/) to process the me
 
 The webhook implementation is a fork from [RNogales94's project](https://github.com/RNogales94/Telegram-Bot-Heroku-Webhook-For-Medium-).
 
-The bot is hosted on [pythonanywhere](https://www.pythonanywhere.com/) servers with a free plan.
+The bot is hosted on [Render](https://render.com/) servers with a free plan.
 
 ## License
 
@@ -54,7 +55,7 @@ Bot de Telegram que implementa la [API Wit.ai](https://wit.ai/) para procesar el
 
 La implementación del webhook es una bifurcación del [proyecto de RNogales94](https://github.com/RNogales94/Telegram-Bot-Heroku-Webhook-For-Medium-).
 
-El bot está hosteado en los servers de [pythonanywhere](https://www.pythonanywhere.com/) con un plan gratuito.
+El bot está hosteado en los servers de [Render](https://render.com/) con un plan gratuito.
 
 ## Licencia
 
