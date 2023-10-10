@@ -73,7 +73,7 @@ def main():
 
 		print(telegramBot_r)
 
-		if('location' in telegramBot_r):
+		if('location' in telegramBot_r['message']['from']):
 			chat_id = telegramBot_r['chat']['id']
 			message = telegramBot_r['location']
 		elif('message' in telegramBot_r):
