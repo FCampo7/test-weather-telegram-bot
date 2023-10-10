@@ -73,16 +73,11 @@ def main():
 
 		print("Telegram response: "+str(telegramBot_r))
 
-		if('location' in telegramBot_r['message']['from']):
-			chat_id = telegramBot_r['message']['from']['id']
-			message = telegramBot_r['message']['from']['location']
-		elif('message' in telegramBot_r):
-			chat_id = telegramBot_r['message']['chat']['id']
-			message = telegramBot_r['message']['text']
-			witIntention = True
+		chat_id = telegramBot_r[1]['chat']['id']
+		if('location' in telegramBot_r[1]):
+			message = telegramBot_r[1]['location']
 		else:
-			chat_id = telegramBot_r['edited_message']['chat']['id']
-			message = telegramBot_r['edited_message']['text']
+			message = telegramBot_r[1]['text']
 			witIntention = True
 
 		apiCalls.telegramAPI('sendChatAction', data={'chat_id': str(chat_id), 'action': 'typing'})
@@ -93,7 +88,7 @@ def main():
 			message_s=apiCalls.get_open_weather_gps(message['latitude'], message['longitude'])
 
 	except Exception as e:
-		print("Exception: " + str(e))
+		print("Exception: " + str(e.__str__()))
 		message_s=e
 
 	print(message_s)
