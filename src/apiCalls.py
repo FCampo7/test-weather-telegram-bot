@@ -52,6 +52,27 @@ def __get_open_weather(location, unit):
 	
 	return requests.get(url_ow)
 
+def get_open_weather_gps(lat, lon, unit='metric'):
+	"""Call the [Open Weather](https://openweathermap.org/api) API to get the current weather
+
+	Args:
+		location (str): String with the desired weather location (City, country)\n
+		unit (str): String with the units system wanted (could be: metric (Celsius), standard (Kelvin) or imperial (Fahrenheit))
+
+	Returns:
+		Response: HTTP Response with the weather information
+	"""
+	response = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
+	unidad_d = dict(metric='ºC', imperial='ºF', standard='K')
+	icons_d = dict([(2, '⛈'), (3, '🌦'), (5, '🌧'), (6, '🌨'), (7, '🌫'), (800, '☀️'), (8, '☁️')])
+	
+	if response["weather"][0]["id"] == 800:
+		icon = icons_d[800]
+	else:
+		icon = icons_d[int(response["weather"][0]["id"]/100)]
+	
+	return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
+
 def get_weather(location, unit='metric'):
 	"""Gets the weather and return it in a string ready to be sent by the bot
 

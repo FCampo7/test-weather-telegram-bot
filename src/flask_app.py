@@ -66,24 +66,33 @@ def index():
 @app.route('/bot', methods=['POST'])
 def main():
 	message_s: str
+	witIntention: False
 	
 	try:
 		telegramBot_r = request.json
 
 		print(telegramBot_r)
 
-		if('message' in telegramBot_r):
+		if('location' in telegramBot_r):
+			chat_id = telegramBot_r['chat']['id']
+			message = telegramBot_r['location']
+		elif('message' in telegramBot_r):
 			chat_id = telegramBot_r['message']['chat']['id']
 			message = telegramBot_r['message']['text']
+			witIntention = True
 		else:
 			chat_id = telegramBot_r['edited_message']['chat']['id']
 			message = telegramBot_r['edited_message']['text']
+			witIntention = True
 
 		action_r = apiCalls.telegramAPI('sendChatAction', data={'chat_id': str(chat_id), 'action': 'typing'})
 
 		print(action_r.json)
 
-		message_s=witInterpreter(message)
+		if(witIntention):
+			message_s=witInterpreter(message)
+		else:
+			message_s=apiCalls.get_open_weather_gps(message['latitude'], message['longitude'])
 
 	except Exception as e:
 		print(e)
