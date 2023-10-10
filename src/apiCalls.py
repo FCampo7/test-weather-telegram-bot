@@ -66,6 +66,8 @@ def get_open_weather_gps(lat, lon, unit='metric'):
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
 	
+	print(response)
+
 	return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
 
 def get_weather(location, unit='metric'):
