@@ -18,6 +18,7 @@ def telegramAPI(method, data):
 	"""
 	return requests.post(f'https://api.telegram.org/bot{os.getenv("TOKEN_TELEGRAM")}/'+method, data = data)
 
+
 def witRequest(texto):
 	"""Call the [Wit.ai](https://wit.ai/) API to process the message received by the bot
 
@@ -47,11 +48,13 @@ def __get_open_weather(location, unit):
 	
 	return requests.get(url_ow)
 
+
 def get_open_weather_gps(lat, lon, unit='metric'):
 	"""Call the [Open Weather](https://openweathermap.org/api) API to get the current weather
 
 	Args:
-		location (str): String with the desired weather location (City, country)\n
+		lat (str): String with the latitude from desired weather location (City, country)\n
+		lon (str): String with the longitude from desired weather location (City, country)\n
 		unit (str): String with the units system wanted (could be: metric (Celsius), standard (Kelvin) or imperial (Fahrenheit))
 
 	Returns:
@@ -68,6 +71,7 @@ def get_open_weather_gps(lat, lon, unit='metric'):
 		icon = icons_d[int(response["weather"][0]["id"]/100)]	
 
 	return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
+
 
 def get_weather(location, unit='metric'):
 	"""Gets the weather and return it in a string ready to be sent by the bot
@@ -90,6 +94,7 @@ def get_weather(location, unit='metric'):
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
 	
 	return f"*El clima en {str(location).capitalize()}:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
+
 
 def set_weather(location, temp):
 	"""This function was only to try if the Wit.ai API was recognizig the intent well"""
