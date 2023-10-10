@@ -30,7 +30,13 @@ def witRequest(texto):
 	header = {'Authorization': 'Bearer '+os.getenv('TOKEN_WIT')}
 	url_wit = 'https://api.wit.ai/message?v=20220128&q=' + requests.utils.requote_uri(texto)
 	
-	return requests.get(url_wit, headers=header)
+	response = requests.get(url_wit, headers=header)
+
+	if(response.status_code == 200):
+		return response
+	else:
+		raise Exception("Error al procesar el mensaje")
+
 
 def __get_open_weather(location, unit):
 	"""Call the [Open Weather](https://openweathermap.org/api) API to get the current weather
