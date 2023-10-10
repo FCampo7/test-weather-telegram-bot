@@ -82,7 +82,7 @@ def main():
 
 		if('location' in telegramBot_r[jsonMessage]):
 			message = telegramBot_r[jsonMessage]['location']
-			message_s=apiCalls.get_open_weather_gps(message['latitude'], message['longitude'])
+			message_s=apiCalls.get_open_weather_gps(str(message['latitude']), str(message['longitude']))
 		else:
 			message = telegramBot_r[jsonMessage]['text']
 			message_s=witInterpreter(message)
