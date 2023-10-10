@@ -61,12 +61,13 @@ def get_open_weather_gps(lat, lon, unit='metric'):
 	unidad_d = dict(metric='ºC', imperial='ºF', standard='K')
 	icons_d = dict([(2, '⛈'), (3, '🌦'), (5, '🌧'), (6, '🌨'), (7, '🌫'), (800, '☀️'), (8, '☁️')])
 	
+	print(response)
+	
 	if response["weather"][0]["id"] == 800:
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
 	
-	print(response)
 
 	return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
 
