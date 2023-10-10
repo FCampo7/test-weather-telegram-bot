@@ -29,7 +29,7 @@ def witInterpreter(message: str) -> str:
 	try:
 		wit_r = apiCalls.witRequest(str(message)).json()
 
-		print(wit_r)
+		print("wit response: "+str(wit_r))
 
 		for i in wit_r['intents']:
 			wit_intent.append(i['name'])
@@ -71,7 +71,7 @@ def main():
 	try:
 		telegramBot_r = request.json
 
-		print("Telegram response: "+telegramBot_r)
+		print("Telegram response: "+str(telegramBot_r))
 
 		if('location' in telegramBot_r['message']['from']):
 			chat_id = telegramBot_r['message']['from']['id']
@@ -93,7 +93,7 @@ def main():
 			message_s=apiCalls.get_open_weather_gps(message['latitude'], message['longitude'])
 
 	except Exception as e:
-		print("Exception: " + e)
+		print("Exception: " + str(e))
 		message_s=e
 
 	print(message_s)
