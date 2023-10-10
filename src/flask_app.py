@@ -66,34 +66,33 @@ def index():
 @app.route('/bot', methods=['POST'])
 def main():
 	message_s: str
-	witIntention: False
 	
 	try:
 		telegramBot_r = request.json
 
 		print("Telegram response: "+str(telegramBot_r))
+		jsonMessage = 'message'
 
-		chat_id = telegramBot_r[1]['chat']['id']
-		if('location' in telegramBot_r[1]):
-			message = telegramBot_r[1]['location']
-		else:
-			message = telegramBot_r[1]['text']
-			witIntention = True
+		if('edited_message' in telegramBot_r):
+			jsonMessage='edited_message'
+
+		chat_id = telegramBot_r[jsonMessage]['chat']['id']
 
 		apiCalls.telegramAPI('sendChatAction', data={'chat_id': str(chat_id), 'action': 'typing'})
 
-		if(witIntention):
-			message_s=witInterpreter(message)
-		else:
+		if('location' in telegramBot_r[jsonMessage]):
+			message = telegramBot_r[jsonMessage]['location']
 			message_s=apiCalls.get_open_weather_gps(message['latitude'], message['longitude'])
+		else:
+			message = telegramBot_r[jsonMessage]['text']
+			message_s=witInterpreter(message)
 
 	except Exception as e:
 		print("Exception: " + str(e.__str__()))
 		message_s=e
 
 	print(message_s)
-	r1 = apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
-	print(r1.content)
+	apiCalls.telegramAPI('sendMessage', dict(chat_id = chat_id, text = message_s, parse_mode='MarkdownV2'))
 
 	return ''
 
