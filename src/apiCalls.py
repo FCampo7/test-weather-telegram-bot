@@ -5,7 +5,11 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-lang = json.load(open("lang.json"))
+file=open("lang.json")
+
+lang = json.load(file)
+
+file.close()
 
 def telegramAPI(method, data):
 	"""Function to communicate with the [Telegram Bot](https://core.telegram.org/bots/api)
