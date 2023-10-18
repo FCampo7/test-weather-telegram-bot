@@ -51,7 +51,7 @@ def __get_open_weather(location, unit):
 	Returns:
 		Response: HTTP Response with the weather information
 	"""
-	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}'
+	url_ow = f'https://api.openweathermap.org/data/2.5/weather?q={location}&units={unit}&lang=es&appid={os.getenv("TOKEN_OPENWEATHER")}'
 	
 	return requests.get(url_ow)
 
@@ -70,7 +70,7 @@ def get_open_weather_gps(lat, lon, unit='metric'):
 	unidad_d = dict(metric='ºC', imperial='ºF', standard='K')
 	icons_d = dict([(2, '⛈'), (3, '🌦'), (5, '🌧'), (6, '🌨'), (7, '🌫'), (800, '☀️'), (8, '☁️')])
 	
-	response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={unit}&appid={os.getenv("TOKEN_OPENWEATHER")}').json()
+	response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={unit}&lang=es&appid={os.getenv("TOKEN_OPENWEATHER")}').json()
 	
 	if response["weather"][0]["id"] == 800:
 		icon = icons_d[800]
