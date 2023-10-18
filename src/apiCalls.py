@@ -1,8 +1,11 @@
 import os
 import requests
+import json
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
+
+lang = json.load(open("lang.json"))
 
 def telegramAPI(method, data):
 	"""Function to communicate with the [Telegram Bot](https://core.telegram.org/bots/api)
@@ -70,7 +73,8 @@ def get_open_weather_gps(lat, lon, unit='metric'):
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]	
 
-	return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
+	return f"{lang['es']['geo']} {icon} {response['weather'][0]['main']} {lang['es']['temp']} {int(response['main']['temp'])}{unidad_d[unit]} {lang['es']['feels']} {int(response['main']['feels_like'])}{unidad_d[unit]} {lang['es']['max']} {int(response['main']['temp_max'])}{unidad_d[unit]} {lang['es']['min']} {int(response['main']['temp_min'])}{unidad_d[unit]}"
+	# return f"*El clima en tu ubicación:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
 
 
 def get_weather(location, unit='metric'):
@@ -92,8 +96,9 @@ def get_weather(location, unit='metric'):
 		icon = icons_d[800]
 	else:
 		icon = icons_d[int(response["weather"][0]["id"]/100)]
-	
-	return f"*El clima en {str(location).capitalize()}:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
+
+	return f"{lang['es']['location']} {str(location).capitalize()}:*\n*{icon} {response['weather'][0]['main']} {lang['es']['temp']} {int(response['main']['temp'])}{unidad_d[unit]} {lang['es']['feels']} {int(response['main']['feels_like'])}{unidad_d[unit]} {lang['es']['max']} {int(response['main']['temp_max'])}{unidad_d[unit]} {lang['es']['min']} {int(response['main']['temp_min'])}{unidad_d[unit]}"
+	# return f"*El clima en {str(location).capitalize()}:*\n*{icon} {response['weather'][0]['main']}*\n*Temperatura:* {int(response['main']['temp'])}{unidad_d[unit]}\n*Sensación Térmica:* {int(response['main']['feels_like'])}{unidad_d[unit]}\n*Max:* {int(response['main']['temp_max'])}{unidad_d[unit]}\n*Min:* {int(response['main']['temp_min'])}{unidad_d[unit]}"
 
 
 def set_weather(location, temp):
