@@ -1,0 +1,20 @@
+{
+  "es": {
+    "error": "Disculpas, no entendí\\. Por favor intenta de nuevo probando algo como \"¿Cual es el clima en Buenos Aires, Argentina?\"\\. Gracias\\!",
+    "geo": "*El clima en tu ubicación:*\n*",
+    "location": "*El clima en",
+    "temp": "*\n*Temperatura: *",
+    "feels": "\n*Sensación Térmica: *",
+    "max": "\n*Max: *",
+    "min": "\n*Min: *"
+  },
+  "en": {
+    "error": "Sorry, I didn't understand\\. Please try again by trying something like \"What is the weather in Buenos Aires, Argentina?\"\\. Thank you\\!",
+    "geo": "*The weather at your location:*\n*",
+    "location": "*The weather at",
+    "temp": "*\n*Temperature: *",
+    "feels": "\n*Thermal Sensation: *",
+    "max": "\n*Max: *",
+    "min": "\n*Min: *"
+  }
+}
