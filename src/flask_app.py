@@ -54,7 +54,7 @@ def witInterpreter(message: str) -> str:
 			message_s = apiCalls.set_weather(wit_location[0], wit_temp[0])
 	
 	except Exception as e:
-		message_s = f"{lang['es']['error']}"
+		message_s = f"{apiCalls.lang['es']['error']}"
 		# message_s = f"Disculpas, no entendí\\. Por favor intenta de nuevo probando algo como \"¿Cual es el clima en Buenos Aires, Argentina?\"\\. Gracias\\!"
 		raise Exception(message_s)
 	
