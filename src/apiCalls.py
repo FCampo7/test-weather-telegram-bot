@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-file=open("lang.json")
+file=open("src/lang.json")
 
 lang = json.load(file)
 
