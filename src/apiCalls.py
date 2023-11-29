@@ -1,20 +1,11 @@
 import os
 import requests
 import json
-import git
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-# Obtener el nombre de la rama actual
-repo = git.Repo(search_parent_directories=True)
-current_branch = repo.active_branch.name
-
-# Ejecutar una línea de código dependiendo de la rama
-if current_branch == 'main':
-	file=open("lang.json")
-elif current_branch == 'develop':
-	file=open("src/lang.json")
+file=open("lang.json")
 
 lang = json.load(file)
 
