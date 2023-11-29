@@ -5,7 +5,8 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-file=open("lang.json")
+#file=open("src/lang.json") # para debuguear
+file=open("lang.json") # para produccion
 
 lang = json.load(file)
 
